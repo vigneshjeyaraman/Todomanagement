@@ -1,8 +1,8 @@
 import React from 'react'
-import Form2 from './Form2'
+import LoginForm from './LoginForm'
 function Login(){
     return(
-        <Form2 />
+        <LoginForm />
     )
 }
 export default Login

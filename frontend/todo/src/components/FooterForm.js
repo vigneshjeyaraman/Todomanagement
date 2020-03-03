@@ -1,7 +1,7 @@
 import React from 'react'
 import GETHEADERS, { USERBASEURL } from './Constants'
 import axios from 'axios';
-function Form1() {
+function FooterForm() {
     function handleSubmit(e){
         e.preventDefault()
         let url=`${USERBASEURL}feedback`
@@ -62,4 +62,4 @@ function Form1() {
                 </div>
         )
     }
-export default Form1
+export default FooterForm

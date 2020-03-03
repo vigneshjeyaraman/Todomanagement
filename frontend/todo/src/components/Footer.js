@@ -1,5 +1,5 @@
 import React  from 'react'
-import Form from './Form1'
+import FooterForm from './FooterForm'
 function Footer(){
         return(
             <footer className="page-footer light-green">
@@ -11,7 +11,7 @@ function Footer(){
               </div>
               <div className="col l4 offset-l2 s12">
                 <h5 className="white-text">Contact Us</h5>
-                <Form />
+                <FooterForm />
               </div>
             </div>
           </div>

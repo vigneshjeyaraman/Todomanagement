@@ -1,7 +1,7 @@
 export const USERBASEURL = "http://127.0.0.1:8000/accounts/"
 export const USERTODOURL = "http://127.0.0.1:8000/todo/"
 
-async function GETHEADERS(token=null) {
+function GETHEADERS(token=null) {
     let headers={}
     if(!token){
         headers = {

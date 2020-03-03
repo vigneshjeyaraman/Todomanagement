@@ -6,6 +6,7 @@ import Welcome from './components/Welcome'
 import Login from './components/Login'
 import MyDashboad from './components/MyDashboard'
 import Logout from './components/Logout';
+import Signup from './components/Signup'
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
             <Router history={history}>
               <Route exact path='/' component ={Welcome} /> 
               <Route path ='/login' component ={Login} />
+              <Route path ='/signup' component ={Signup} />
               <Route path ='/mydashboard' component ={MyDashboad} />
               <Route path ='/logout' component ={Logout} />
               {/* <Route path ='/Signup' component={} />

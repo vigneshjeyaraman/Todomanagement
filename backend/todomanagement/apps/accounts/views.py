@@ -9,7 +9,7 @@ class SignupView(mixins.CreateModelMixin, viewsets.GenericViewSet):
     def create(self, request):
         user_obj = serializer_validation(SignupSerializer, request.data)
         serializer = UserSerializer(user_obj)
-        token, created = Token.objects.get_or_create(user=user_obj).first()
+        token, created = Token.objects.get_or_create(user=user_obj)
         data = serializer.data
         data.update({"token":token.key})
         return CustomResponse(data)

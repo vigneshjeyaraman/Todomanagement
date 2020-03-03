@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Navbar2 from './Navbar2'
+import Todo from './Todo'
 function MyDashboard(){
     let username = localStorage.getItem('username')
     useEffect(() => {
@@ -10,7 +11,10 @@ function MyDashboard(){
     })
     
     return(
-    <Navbar2 username = { username }/>
+    <div>
+        <Navbar2 username = { username }/>
+        <Todo />
+    </div>
     )
 }
 

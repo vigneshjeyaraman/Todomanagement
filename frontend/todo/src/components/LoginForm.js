@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import GETHEADERS, { USERBASEURL } from './Constants'
-function Form2(){
+import Navbar from './Navbar'
+function LoginForm(){
     useEffect(() =>{
         if(localStorage.getItem('username')){
             window.location.href = 'http://localhost:3000/mydashboard'
@@ -33,27 +34,30 @@ function Form2(){
             })
     }
     return (
-        <div className="row container">
-            <form className="col s12" onSubmit = {handleSubmit}>
-                <div className="row">
-                    <div className="input-field col s6">
-                        <input id="email" type="email" required />
-                        <label htmlFor="email">Email</label>
+        <div>
+            <Navbar />
+            <div className="row container">
+                <form className="col s12" onSubmit = {handleSubmit}>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input id="email" type="email" required />
+                            <label htmlFor="email">Email</label>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s6">
-                        <input id="password" type="password" required />
-                        <label htmlFor="password">Password</label>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input id="password" type="password" required />
+                            <label htmlFor="password">Password</label>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s0">
-                        <button type="submit" className="waves-effect waves-light btn">Submit</button>
+                    <div className="row">
+                        <div className="input-field col s0">
+                            <button type="submit" className="waves-effect waves-light btn">Submit</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }
-export default Form2
+export default LoginForm

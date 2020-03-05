@@ -21,3 +21,10 @@ tr {
   text-align: left;
   vertical-align: left;
 }
+h1 {
+  margin: 0;
+  padding: 0;
+}
+select {
+  display: list-item;
+}

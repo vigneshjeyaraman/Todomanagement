@@ -7,6 +7,7 @@ import Login from './components/Login'
 import MyDashboad from './components/MyDashboard'
 import Logout from './components/Logout';
 import Signup from './components/Signup'
+import EditTodo from './components/EditTodo';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
               <Route path ='/login' component ={Login} />
               <Route path ='/signup' component ={Signup} />
               <Route path ='/mydashboard' component ={MyDashboad} />
+              <Route path ='/edittodo/:id' component ={EditTodo} />
               <Route path ='/logout' component ={Logout} />
               {/* <Route path ='/Signup' component={} />
               <Route path ='/Home' component={} /> */}

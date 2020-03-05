@@ -12,7 +12,7 @@ function MyDashboard(){
     
     return(
     <div>
-        <Navbar2 username = { username }/>
+        <Navbar2 />
         <Todo />
     </div>
     )

@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom'
 Navbar is the important component. It will link all the other component like home, about, login and
 signup.
 */
-const Navbar2 = (props) => {
+function Navbar2(){
     return (
         <nav>
                 <div className="navbar-material">
                     <div className="nav-wrapper">
                         <div className="left-align"><a href="/" className="brand-logo App-logo" id='App-logo'><img className="circle responsive-img middle" src={'favicon.ico'} alt="LOGO"/></a></div>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><NavLink to="/mydashboard"> { props.username }</NavLink></li>
+                                <li><NavLink to="/mydashboard"> { localStorage.getItem('username') }</NavLink></li>
                                 <li><NavLink to="/logout"> Logout </NavLink></li>
                         </ul>
                     </div>

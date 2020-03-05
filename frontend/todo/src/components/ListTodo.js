@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import GETHEADERS, { USERTODOURL } from './Constants'
-
-class ListTodo extends Component{
+import history from './history'
+class       ListTodo extends Component{
     state = {
         "todos":null
+    }
+    handleEdit(id){
+        history.push('/edittodo/' + id)
     }
     handleDelete(index, id){
         let token = localStorage.getItem('token')
@@ -47,7 +50,6 @@ class ListTodo extends Component{
     }).catch(err=>{
         console.log(err)
     })
-    console.log(this.state.todos)
 }
     render(){
         let todos=null
@@ -60,7 +62,7 @@ class ListTodo extends Component{
                                 <td align="right">{items.deadline}</td>
                                 <td align="right">{items.is_finished ? "Yes" : "No "}</td>
                                 <td><button className="btn waves-effect waves-light btn-small red" onClick = { () => {this.handleDelete(index,items.id)}}>Delete</button></td>
-                                <td><button className="btn waves-effect waves-light btn-small green">Edit</button></td>
+                                <td><button className="btn waves-effect waves-light btn-small green" onClick = { () => {this.handleEdit(items.id)}}>Edit</button></td>
                             </tr>
                 ))
             ) : (

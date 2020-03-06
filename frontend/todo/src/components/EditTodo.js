@@ -30,6 +30,10 @@ class EditTodo extends Component{
         }).catch(err =>{
             console.log(err)
         })
+        
+    }
+    async callSubmit(){
+        await this.handleSubmit()
         alert("Updated")
         history.push('/mydashboard')
     }
@@ -90,7 +94,7 @@ class EditTodo extends Component{
                     </div>
                     <div className="row">
                         <div className="input-field col s0">
-                            <button type="submit" className="waves-effect waves-light btn" onClick = { () => {this.handleSubmit()}}>Submit</button>
+                            <button type="submit" className="waves-effect waves-light btn" onClick = { () => {this.callSubmit()}}>Submit</button>
                         </div>
                     </div>
                 </form>

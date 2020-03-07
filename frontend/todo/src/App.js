@@ -7,6 +7,7 @@ import Login from './components/Login'
 import MyDashboad from './components/MyDashboard'
 import Logout from './components/Logout';
 import Signup from './components/Signup'
+import AddTodo from './components/AddTodo'
 import EditTodo from './components/EditTodo';
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path ='/login' component ={Login} />
               <Route path ='/signup' component ={Signup} />
               <Route path ='/mydashboard' component ={MyDashboad} />
+              <Route path ='/addtodo' component ={AddTodo} />
               <Route path ='/edittodo/:id' component ={EditTodo} />
               <Route path ='/logout' component ={Logout} />
               {/* <Route path ='/Signup' component={} />

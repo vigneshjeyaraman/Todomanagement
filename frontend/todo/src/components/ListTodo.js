@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import GETHEADERS, { USERTODOURL } from './Constants'
 import history from './history'
-class       ListTodo extends Component{
+class ListTodo extends Component{
     state = {
         "todos":null
     }
@@ -33,6 +33,9 @@ class       ListTodo extends Component{
                 alert("Try Again later!!")
             })
         }
+    }
+    addTodo(){
+        history.push("/addtodo")
     }
     componentDidMount(){
         let token = localStorage.getItem('token')
@@ -73,6 +76,7 @@ class       ListTodo extends Component{
     }
         return(
             <div className="center container">
+                <button className="btn-floating btn-medium green right" onClick = {this.addTodo}><i className="material-icons"><img src="plus.png" alt="add" width="40px" align="center"/></i></button>
                 <table>
                     <thead>
                         <tr>

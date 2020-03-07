@@ -9,6 +9,9 @@ function MyDashboard(){
             window.location.href = 'http://localhost:3000/login'
         }
     })
+    function addTodo(){
+        alert("hello")
+    }
     
     return(
     <div>

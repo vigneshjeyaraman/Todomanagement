@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
-import GETHEADERS, { USERBASEURL } from './Constants'
-import Navbar from './Navbar'
+import { USERBASEURL } from '../Constants'
+import Navbar from '../ui_components/Navbar'
+import history from '../history'
+import commonApiCall from '../service'
+
 function LoginForm(){
     useEffect(() =>{
         if(localStorage.getItem('username')){
-            window.location.href = 'http://localhost:3000/mydashboard'
+            history.push('/mydashboard')
         }
     })
     function handleSubmit(e){
@@ -14,14 +16,9 @@ function LoginForm(){
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         }
-        let headers = GETHEADERS()
         let url= `${USERBASEURL}login/`
-        console.log(url)
-        axios.post(url,
-            body,
-            {
-                headers:headers
-            }).then(response =>{
+        let loginResponse = commonApiCall('post',url,body)
+        loginResponse.then(response =>{
                 console.log(response)
                 alert('Welcome, '+response.data['data']['username'])
                 localStorage.setItem('email',response.data['data']['email'])

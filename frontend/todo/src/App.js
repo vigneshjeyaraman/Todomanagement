@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import history from './components/history'
+import history from './history'
 import { BrowserRouter, Route, Switch, Router } from 'react-router-dom'
-import Welcome from './components/Welcome'
-import Login from './components/Login'
+import Welcome from './ui_components/Welcome'
+import Login from './ui_components/Login'
 import MyDashboad from './components/MyDashboard'
-import Logout from './components/Logout';
-import Signup from './components/Signup'
+import Logout from './ui_components/Logout';
+import Signup from './ui_components/Signup'
 import AddTodo from './components/AddTodo'
 import EditTodo from './components/EditTodo';
 function App() {

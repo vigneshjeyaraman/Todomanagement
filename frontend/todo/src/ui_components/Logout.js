@@ -1,9 +1,9 @@
 import React from 'react'
-
+import history from '../history'
 function Logout(){
         localStorage.clear()
         alert("Adios Amigo!!")
-        window.location.href = "http://localhost:3000/login"
+        history.pushState('/login')
     return(
         <h1>See you!!!</h1>
     )

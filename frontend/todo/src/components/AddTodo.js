@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import GETHEADERS, { USERTODOURL } from './Constants'
-import axios from 'axios'
-import history from './history'
+import { USERTODOURL } from '../Constants'
+import history from '../history'
+import commonApiCall from '../service'
 class AddTodo extends Component{
     handleSubmit(){
-        let headers = GETHEADERS(localStorage.getItem('token'))
         let url = `${USERTODOURL}`
         let body = {
             title : document.getElementById('title').value,
@@ -13,13 +12,8 @@ class AddTodo extends Component{
             finished: document.getElementById('finished').value
         }
         console.log(body)
-        axios.post(
-            url,
-            body,
-            {
-                headers:headers
-            }
-        ).then(response =>{
+        let todoResponse = commonApiCall('post', url, body)
+        todoResponse.then(response =>{
             console.log(response.data)
         }).catch(err =>{
             console.log(err)

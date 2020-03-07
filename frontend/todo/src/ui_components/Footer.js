@@ -1,5 +1,5 @@
 import React  from 'react'
-import FooterForm from './FooterForm'
+import FooterForm from '../components/FooterForm'
 function Footer(){
         return(
             <footer className="page-footer light-green">

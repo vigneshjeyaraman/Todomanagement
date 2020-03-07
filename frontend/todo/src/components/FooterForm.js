@@ -1,6 +1,6 @@
 import React from 'react'
-import GETHEADERS, { USERBASEURL } from './Constants'
-import axios from 'axios';
+import { USERBASEURL } from '../Constants'
+import commonCallApi from '../service'
 function FooterForm() {
     function handleSubmit(e){
         e.preventDefault()
@@ -11,12 +11,8 @@ function FooterForm() {
             email: document.getElementById('email').value,
             query: document.getElementById('query').value
         }
-        axios.defaults.withCredentials = true;
-        let headers = GETHEADERS()
-        axios.post(url,
-            body,
-            {headers:headers
-        }).then(
+        let contactResponse = commonCallApi('post', url, body)
+        contactResponse.then(
             response =>{
                 console.log(response)
                 alert(response.data['data']['message'])
@@ -33,17 +29,17 @@ function FooterForm() {
                     <form className="col s12" id="form" onSubmit = {handleSubmit}>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input placeholder="First Name" id="first_name" type="text" className="validate" required/>
+                                <input id="first_name" type="text" className="validate" required/>
                                 <label htmlFor="first_name">First Name</label>
                             </div>
                             <div className="input-field col s6">
-                                <input placeholder="Last Name" id="last_name" type="text" className="validate" required/>
+                                <input id="last_name" type="text" className="validate" required/>
                                 <label htmlFor="last_name">Last Name</label>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input placeholder="Email" id="email" type="text" className="validate" required/>
+                                <input id="email" type="text" className="validate" required/>
                                 <label htmlFor="email">Email</label>
                             </div>
                         </div>

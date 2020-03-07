@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import GETHEADERS, { USERTODOURL } from './Constants'
-import history from './history'
+import { USERTODOURL } from '../Constants'
+import history from '../history'
+import commonCallApi from '../service'
 class EditTodo extends Component{
     handleSubmit(){
-        let headers = GETHEADERS(localStorage.getItem('token'))
         let url = `${USERTODOURL}${this.props.match.params.id}/`
         let finished = document.getElementById('finished').value
         if(finished === 'yes'){
@@ -19,13 +18,8 @@ class EditTodo extends Component{
             finished: finished
         }
         console.log(body)
-        axios.put(
-            url,
-            body,
-            {
-                headers:headers
-            }
-        ).then(response =>{
+        let editResponse = commonCallApi('put', url, body)
+        editResponse.then(response =>{
             console.log(response.data)
         }).catch(err =>{
             console.log(err)
@@ -38,14 +32,9 @@ class EditTodo extends Component{
         history.push('/mydashboard')
     }
     componentDidMount(){
-        let headers = GETHEADERS(localStorage.getItem('token'))
         let url = `${USERTODOURL}${this.props.match.params.id}`
-        axios.get(
-            url,
-            {
-                headers:headers
-            }
-        ).then(response =>{
+        let todogetResponse = commonCallApi('get', url)
+        todogetResponse.then(response =>{
             // console.log(response.data)
             document.getElementById('title').value = response.data['title']
             document.getElementById('description').value = response.data['description']

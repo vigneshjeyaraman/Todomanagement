@@ -1,5 +1,5 @@
 import React from 'react'
-import ListTodo from './ListTodo'
+import ListTodo from '../components/ListTodo'
 function Todo(){
     return(
         <ListTodo />

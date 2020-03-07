@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import Navbar2 from './Navbar2'
-import Todo from './Todo'
+import Navbar2 from '../ui_components/Navbar2'
+import Todo from '../ui_components/Todo'
 function MyDashboard(){
     let username = localStorage.getItem('username')
     useEffect(() => {
@@ -9,10 +9,6 @@ function MyDashboard(){
             window.location.href = 'http://localhost:3000/login'
         }
     })
-    function addTodo(){
-        alert("hello")
-    }
-    
     return(
     <div>
         <Navbar2 />

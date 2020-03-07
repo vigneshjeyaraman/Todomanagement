@@ -1,7 +1,8 @@
 import React from 'react'
-import axios from 'axios'
-import GETHEADERS, { USERBASEURL } from './Constants'
-import Navbar from './Navbar'
+import { USERBASEURL } from '../Constants'
+import Navbar from '../ui_components/Navbar'
+import commonApiCall from '../service'
+import history from '../history'
 function SignupForm(){
     function handleSubmit(e){
         e.preventDefault()
@@ -11,17 +12,13 @@ function SignupForm(){
             username: document.getElementById('username').value,
             phone_number: document.getElementById('phone_number').value
         }
-        let headers = GETHEADERS()
         let url= `${USERBASEURL}signup/`
+        let signupResponse = commonApiCall('post',url,body)
         console.log(url)
-        axios.post(url,
-            body,
-            {
-                headers:headers
-            }).then(response =>{
+        signupResponse.then(response =>{
                 console.log(response)
                 alert("Signup Successfull. Please login and manage your todo!!")
-                window.location.href = 'http://localhost:3000/login'
+                history.push('/login')
             }).catch(err =>{
                 console.log("sssssssss",err.response)
                 alert(err.response.data['error']['message'])

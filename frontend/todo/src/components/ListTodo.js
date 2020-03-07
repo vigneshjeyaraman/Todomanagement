@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import GETHEADERS, { USERTODOURL } from './Constants'
-import history from './history'
+import { USERTODOURL } from '../Constants'
+import history from '../history'
+import commonApiCall from '../service'
 class ListTodo extends Component{
     state = {
         "todos":null
@@ -10,17 +10,11 @@ class ListTodo extends Component{
         history.push('/edittodo/' + id)
     }
     handleDelete(index, id){
-        let token = localStorage.getItem('token')
-        let headers = GETHEADERS(token)
         let url = `${USERTODOURL}${id}`
         let confirmation = window.confirm("Are you sure. You want to delete this TODO!!")
         if(confirmation){
-            axios.delete(
-                url,
-                {
-                    headers:headers
-                }
-            ).then(response =>{
+            const deletedTodo = commonApiCall('delete',url)
+            deletedTodo.then(response =>{
                 console.log(response)
                 let todos = this.state.todos
                 todos.splice(index, 1)
@@ -38,23 +32,18 @@ class ListTodo extends Component{
         history.push("/addtodo")
     }
     componentDidMount(){
-        let token = localStorage.getItem('token')
-        let headers = GETHEADERS(token)
         let url = `${USERTODOURL}`
-        axios.get(
-            url,
-            {
-                headers:headers
-            }
-        ).then(response =>{
+        const todos = commonApiCall('get',url)
+        todos.then(response =>{
+            console.log(response.data)
             this.setState({
-                todos: response.data
+                todos:response.data
             })
-    }).catch(err=>{
-        console.log(err)
-    })
+        }).catch(err =>{
+            console.log(err)
+        })
 }
-    render(){
+    render_template(){
         let todos=null
         if(this.state.todos){
              todos = this.state.todos.length ?(
@@ -74,6 +63,10 @@ class ListTodo extends Component{
                 </tr>
             )
     }
+    return todos
+    }
+    render(){
+        let todos = this.render_template()
         return(
             <div className="center container">
                 <button className="btn-floating btn-medium green right" onClick = {this.addTodo}><i className="material-icons"><img src="plus.png" alt="add" width="40px" align="center"/></i></button>

@@ -2,7 +2,7 @@ import React from 'react'
 import SimpleImageSlider from "react-simple-image-slider";
 import Navbar from './Navbar'
 import Footer from './Footer'
-function Welcome() {
+const Welcome = () => {
         const images = [
             { url: "todo1.png" },
             { url: "todo2.png" },

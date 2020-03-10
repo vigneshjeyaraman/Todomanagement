@@ -1,9 +1,9 @@
 import React from 'react'
 import history from '../history'
-function Logout(){
+const Logout = () => {
         localStorage.clear()
         alert("Adios Amigo!!")
-        history.pushState('/login')
+        history.push('/login')
     return(
         <h1>See you!!!</h1>
     )

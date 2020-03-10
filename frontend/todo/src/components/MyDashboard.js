@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Navbar2 from '../ui_components/Navbar2'
 import Todo from '../ui_components/Todo'
-function MyDashboard(){
+const MyDashboard = () =>{
     let username = localStorage.getItem('username')
     useEffect(() => {
         if(!username){

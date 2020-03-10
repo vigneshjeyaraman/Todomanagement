@@ -69,6 +69,7 @@ class ListTodo extends Component{
         let todos = this.render_template()
         return(
             <div className="center container">
+                
                 <button className="btn-floating btn-medium green right" onClick = {this.addTodo}><i className="material-icons"><img src="plus.png" alt="add" width="40px" align="center"/></i></button>
                 <table>
                     <thead>

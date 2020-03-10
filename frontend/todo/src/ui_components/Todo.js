@@ -1,6 +1,6 @@
 import React from 'react'
 import ListTodo from '../components/ListTodo'
-function Todo(){
+const Todo = () => {
     return(
         <ListTodo />
     )

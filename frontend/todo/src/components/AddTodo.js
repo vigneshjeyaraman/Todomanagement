@@ -3,14 +3,16 @@ import { USERTODOURL } from '../Constants'
 import history from '../history'
 import commonApiCall from '../service'
 class AddTodo extends Component{
+        state = {
+            "title":null,
+            "description":null,
+            "deadline":null,
+            "is_finished":null
+        }
+    
     handleSubmit(){
         let url = `${USERTODOURL}`
-        let body = {
-            title : document.getElementById('title').value,
-            description: document.getElementById('description').value,
-            deadline: document.getElementById('deadline').value,
-            finished: document.getElementById('finished').value
-        }
+        let body = this.state
         console.log(body)
         let todoResponse = commonApiCall('post', url, body)
         todoResponse.then(response =>{
@@ -22,8 +24,13 @@ class AddTodo extends Component{
 
     async callSubmit(){
         await this.handleSubmit()
-        alert("Updated")
+        alert("Todo Added")
         history.push('/mydashboard')
+    }
+    handleChange = (e) =>{
+        this.setState({
+            [e.target.id]:e.target.value
+        })
     }
     render(){
         return(
@@ -32,28 +39,29 @@ class AddTodo extends Component{
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="title" type="text" required />
+                            <input id="title" type="text" onChange = { this.handleChange } required />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="description" type="text" required />
+                            <input id="description" type="text" onChange = { this.handleChange } required />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="deadline" type="date" required />
+                            <input id="deadline" type="date" onChange = { this.handleChange } required />
                             <label htmlFor="deadline">Deadline</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <select id="finished" defaultValue="Finished">
+                            <select id="is_finished" onChange = { this.handleChange }  defaultValue="Finished">
                                 <optgroup label="Finished">
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="select">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </optgroup>
                             </select>
                         </div>

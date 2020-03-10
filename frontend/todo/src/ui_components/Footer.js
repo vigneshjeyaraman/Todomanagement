@@ -1,6 +1,6 @@
 import React  from 'react'
 import FooterForm from '../components/FooterForm'
-function Footer(){
+const Footer = () => {
         return(
             <footer className="page-footer light-green">
           <div className="container">

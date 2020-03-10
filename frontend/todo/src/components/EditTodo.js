@@ -3,20 +3,22 @@ import { USERTODOURL } from '../Constants'
 import history from '../history'
 import commonCallApi from '../service'
 class EditTodo extends Component{
-    handleSubmit(){
+    state = {
+        "title":null,
+        "description":null,
+        "deadline":null,
+        "is_finished":null
+    }
+
+    handleChange = (e) =>{
+        this.setState({
+            [e.target.id] : e.target.value
+        })
+    }
+    handleSubmit = (e) => {
         let url = `${USERTODOURL}${this.props.match.params.id}/`
-        let finished = document.getElementById('finished').value
-        if(finished === 'yes'){
-            finished = true
-        }else{
-            finished = false
-        }
-        let body = {
-            title : document.getElementById('title').value,
-            description: document.getElementById('description').value,
-            deadline: document.getElementById('deadline').value,
-            finished: finished
-        }
+        
+        let body = this.state
         console.log(body)
         let editResponse = commonCallApi('put', url, body)
         editResponse.then(response =>{
@@ -36,14 +38,12 @@ class EditTodo extends Component{
         let todogetResponse = commonCallApi('get', url)
         todogetResponse.then(response =>{
             // console.log(response.data)
-            document.getElementById('title').value = response.data['title']
-            document.getElementById('description').value = response.data['description']
-            document.getElementById('deadline').value = response.data['deadline']
-            if(response.data['finished']){
-                document.getElementById('finished').value = "yes"
-            }else{
-                document.getElementById('finished').value = "no"
-            }
+            this.setState({
+                title : response.data['title'],
+                description : response.data['description'],
+                deadline : response.data['deadline'],
+                is_finished: response.data['is_finished']
+            })
         }).catch(err =>{
             console.log(err)
         })
@@ -55,28 +55,29 @@ class EditTodo extends Component{
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="title" type="text" required />
+                            <input id="title" type="text" onChange = { this.handleChange } value = { this.state['title'] } required />
                             <label htmlFor="title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="description" type="text" required />
+                            <input id="description" type="text" onChange = { this.handleChange } value = { this.state['description'] }required />
                             <label htmlFor="description">Description</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input id="deadline" type="date" required />
+                            <input id="deadline" type="date" onChange = { this.handleChange } value = { this.state['deadline'] } required />
                             <label htmlFor="deadline">Deadline</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <select id="finished" defaultValue="Finished">
+                            <select id="is_finished" onChange = { this.handleChange } value = { this.state['is_finished'] }defaultValue="Finished">
                                 <optgroup label="Finished">
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="select">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </optgroup>
                             </select>
                         </div>

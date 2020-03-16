@@ -22,8 +22,6 @@ function App() {
               <Route path ='/addtodo' component ={AddTodo} />
               <Route path ='/edittodo/:id' component ={EditTodo} />
               <Route path ='/logout' component ={Logout} />
-              {/* <Route path ='/Signup' component={} />
-              <Route path ='/Home' component={} /> */}
             </Router>
       </Switch>
     </div>
